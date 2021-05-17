@@ -1,9 +1,10 @@
-
 # PHP SIP User Agent class
 
 ## Introduction
 
-This is a PHP implementation of a simple [SIP](http://en.wikipedia.org/wiki/Session_Initiation_Protocol) user agent (UAS / UAC). PHP SIP is not a VoIP phone. It is not possible to make "voip calls" with this tool - only SIP signalling is supported - no audio available.
+This is a PHP implementation of a simple [SIP](http://en.wikipedia.org/wiki/Session_Initiation_Protocol) user agent (UAS
+/ UAC). PHP SIP is not a VoIP phone. It is not possible to make "voip calls" with this tool - only SIP signalling is
+supported - no audio available.
 
 Usage examples:
 
@@ -26,48 +27,49 @@ Usage examples:
 
 * only UDP transport
 * not fully RFC compliant
-* probably more... please help improve this project and report any issues [here](https://github.com/level7systems/php-sip/issues)
+* probably more... please help improve this project and report any
+  issues [here](https://github.com/level7systems/php-sip/issues)
 
 ## Code examples
+
 Instant MESSAGE
 
 ```php
+use level7systems\PhpSip;
 
 try {
-  $api = new PhpSIP('172.30.30.1'); // IP we will bind to $api->setMethod('MESSAGE');  
-  $api->setFrom('sip:john@sip.domain.com');
-  $api->setUri('sip:anna@sip.domain.com');
-  $api->setBody('Hi, can we meet at 5pm   today?');
-  
-  $res = $api->send(); echo "res1: $res\n";
-
+    $api = new PhpSip('172.30.30.1'); // IP we will bind to $api->setMethod('MESSAGE');  
+    
+    $api->setFrom('sip:john@sip.domain.com');
+    $api->setUri('sip:anna@sip.domain.com');
+    $api->setBody('Hi, can we meet at 5pm   today?');
+    
+    $res = $api->send(); echo 'res1:' . $res . PHP_EOL;
 } catch (Exception $e) {
-
-  echo $e->getMessage()."\n";
+    echo $e->getMessage() . PHP_EOL;
 }
-
-?> 
 ```
 
 Send NOTIFY to resync Linksys phone
 
 ```php
+use level7systems\PhpSip;
+
 try {
-  $api = new PhpSIP('172.30.30.1'); // IP we will bind to
-  $api->setUsername('10000'); // authentication username
-  $api->setPassword('secret'); // authentication password //
-  $api->setProxy('some_ip_here');
-  $api->addHeader('Event: resync');
-  $api->setMethod('NOTIFY');
-  $api->setFrom('sip:10000@sip.domain.com');
-  $api->setUri('sip:10000@sip.domain.com');
-  $res = $api->send();
-  
-  echo "res1: $res\n";
-
+    $api = new PhpSip('172.30.30.1'); // IP we will bind to
+    
+    $api->setUsername('10000'); // authentication username
+    $api->setPassword('secret'); // authentication password //
+    $api->setProxy('some_ip_here');
+    $api->addHeader('Event: resync');
+    $api->setMethod('NOTIFY');
+    $api->setFrom('sip:10000@sip.domain.com');
+    $api->setUri('sip:10000@sip.domain.com');
+    
+    $res = $api->send();
+    
+    echo 'res1:' . $res . PHP_EOL;
 } catch (Exception $e) {
-
-  echo $e->getMessage()."\n"; }
-
-?>
+    echo $e->getMessage() . PHP_EOL; 
+}
 ```
