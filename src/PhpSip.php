@@ -27,40 +27,40 @@ class PhpSip
     private bool $serverMode = false;
     private bool|string $dialog = false;
     private $socket;
-    private ?string $srcIp;
+    private ?string $srcIp = null;
     private string $userAgent = 'PHP SIP';
     private int $cSeq = 20;
-    private string $srcPort;
-    private ?string $callId;
-    private string $contact;
+    private ?string $srcPort = null;
+    private ?string $callId = null;
+    private ?string $contact = null;
     private string $uri;
     private string $host;
     private int $port = 5060;
-    private string $proxy;
+    private ?string $proxy = null;
     private string $method;
     private string $username;
     private string $password;
-    private ?string $to;
-    private ?string $toTag;
-    private ?string $from;
+    private ?string $to = null;
+    private ?string $toTag = null;
+    private ?string $from = null;
     private string $fromUser;
-    private ?string $fromTag;
+    private ?string $fromTag = null;
     private string $via;
-    private ?string $contentType;
-    private ?string $body;
-    private ?string $rxMsg;
-    private ?string $resCode;
-    private ?string $resContact;
-    private ?string $resCseqMethod;
-    private ?string $reqMethod;
+    private ?string $contentType = null;
+    private ?string $body = null;
+    private ?string $rxMsg = null;
+    private ?string $resCode = null;
+    private ?string $resContact = null;
+    private ?string $resCseqMethod = null;
+    private ?string $reqMethod = null;
     private array $reqVia;
-    private ?string $reqCseqMethod;
-    private ?string $reqCseqNumber;
-    private ?string $reqFrom;
-    private ?string $reqFromTag;
-    private ?string $reqTo;
-    private ?string $reqToTag;
-    private ?string $auth;
+    private ?string $reqCseqMethod = null;
+    private ?string $reqCseqNumber = null;
+    private ?string $reqFrom = null;
+    private ?string $reqFromTag = null;
+    private ?string $reqTo = null;
+    private ?string $reqToTag = null;
+    private ?string $auth = null;
     private array $routes = [];
     private array $recordRoute = [];
     private array $extraHeaders = [];
@@ -1054,7 +1054,7 @@ class PhpSip
 
         $matches = [];
 
-        if (preg_match('/^Contact:.*<(.*)>/im', $this->rx_msg, $matches)) {
+        if (preg_match('/^Contact:.*<(.*)>/im', $this->rxMsg, $matches)) {
             $output = trim($matches[1]);
 
             $semicolon = strpos($output, ";");
