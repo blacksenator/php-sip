@@ -1,5 +1,5 @@
 {
-  "name": "level7systems/sip-php",
+  "name": "level7systems/php-sip",
   "description": "PHP implementation of a simple SIP user agent",
   "type": "library",
   "authors": [
