@@ -1,6 +1,6 @@
 <?php
 
-namespace level7systems\Exceptions;
+namespace EasybellLibs\Exceptions;
 
 use Exception;
 

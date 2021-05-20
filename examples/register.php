@@ -1,9 +1,10 @@
 <?php
 
 require_once '../src/Exceptions/PhpSipException.php';
+require_once('../src/Sockets/SocketProxy.php');
 require_once('../src/PhpSip.php');
 
-use level7systems\PhpSip;
+use EasybellLibs\PhpSip;
 
 try {
     $api = new PhpSip();
